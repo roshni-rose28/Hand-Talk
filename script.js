@@ -393,12 +393,10 @@ function fingerExtended(
 
 
 function thumbExtended(landmarks) {
-
     return (
-        landmarks[4].x <
-        landmarks[3].x
+        landmarks[4].y < landmarks[3].y &&
+        landmarks[4].y < landmarks[2].y
     );
-
 }
 
 
@@ -497,38 +495,8 @@ function detectGesture(landmarks) {
         return "PEACE ✌️";
 
     }
-
-
-    /* One finger */
-
-    if (
-        index &&
-        !middle &&
-        !ring &&
-        !pinky
-    ) {
-
-        return "ONE ☝️";
-
-    }
-
-
-    /* Fist */
-
-    if (
-        !index &&
-        !middle &&
-        !ring &&
-        !pinky
-    ) {
-
-        return "STOP ✊";
-
-    }
-
-
+   
     /* Thumbs up */
-
     if (
         thumb &&
         !index &&
@@ -536,17 +504,35 @@ function detectGesture(landmarks) {
         !ring &&
         !pinky
     ) {
-
-        return "GOOD 👍";
-
+        return "YES / GOOD 👍";
     }
 
+    /* One finger */
+    if (
+        index &&
+        !middle &&
+        !ring &&
+        !pinky
+    ) {
+        return "ONE ☝️";
+    }
+
+    /* Fist */
+    if (
+        !thumb &&
+        !index &&
+        !middle &&
+        !ring &&
+        !pinky
+    ) {
+        return "STOP ✊";
+    }
 
     return "Gesture detected 🤟";
-
 }
 
 
+   
 /* =====================================================
    UPDATE TRANSLATION
 ===================================================== */
